@@ -31,8 +31,8 @@ kval = 10 # Learning iterations
 # Message to show before starting training
 msg = 'Xval training pECG classification with multiple output: Control (100), Mild ischaemia (010) or Severe ischaemia (001)'
 
-fname = 'TPtrainingSetMultiOutputFull.h5'
-outname = 'optimalWeightsTPECGmultiOutput' #Filename root to save optimal weights
+fname = 'trainingData/TPtrainingSetMultiOutputFull.h5'
+outname = 'trainingResults/optimalWeightsTPECGmultiOutput' #Filename root to save optimal weights
 trainData = h5func.import_h5(fname,['data'])[0][0]
 
 
