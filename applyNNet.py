@@ -14,17 +14,17 @@ from numpy import atleast_2d
 from numpy import hstack
 
 # Read weights
-fname = 'optimWeights/TPECGmildIschemia/featChange/optimalWeightsTPECGmildIschemia3hl9hu.h5'
+fname = 'trainingResults/optimalWeightsTPECGmultiOutput5h20hu.h5'
 vname = ['W','IN','OUT','Precision','Recall']
 W, IN, OUT,p,r = h5func.import_h5(fname,vname)[0]
 
 # Read data
-fname = 'trainingData/pECGfeat/TPtrainingSetMildIschemiaFeatChange.h5'
+fname = 'trainingData/TPtrainingSetMultiOutput.h5'
 vname = ['data']
 dat = h5func.import_h5(fname,vname)[0][0]
 
-feat = dat[:,:-4]
-target = atleast_2d(dat[:,-4:]).T
+feat = dat[:,:-3]
+target = atleast_2d(dat[:,-3:]).T
 
 # Apply forward prop
 forwardProp = nnetFunc.fProp()
