@@ -19,20 +19,20 @@ Train using given data file
 
 huList = [10,11,12,13,14,15]# Number of hidden units
 hlList = [3,4,5] # Number of hidden layers (minus 1)
-ol = 4 # Number of units in the output layer
+ol = 3 # Number of units in the output layer
 maxIt = 50000 # Number of iterations for learning
  # Stop criteria
 JstopDiff = 1e-10
 JstopMag = 1e-4
 lam = 1# Regularization parameter
 lr = 0.005 # learning rate
-kval = 5 # Learning iterations
+kval = 10 # Learning iterations
 
 # Message to show before starting training
-msg = 'Xval training pECG classification with multiple output, magnitude Severe ischemia dataset'
+msg = 'Xval training pECG classification with multiple output: Control (100), Mild ischaemia (010) or Severe ischaemia (001)'
 
-fname = 'trainingData/pECGfeat/TPtrainingSetSevereIschemiaMag.h5'
-outname = 'optimWeights/TPECGsevereIschemia/mag/optimalWeightsTPECGsevereIschemia' #Filename root to save optimal weights
+fname = 'TPtrainingSetMultiOutputFull.h5'
+outname = 'optimalWeightsTPECGmultiOutput' #Filename root to save optimal weights
 trainData = h5func.import_h5(fname,['data'])[0][0]
 
 
