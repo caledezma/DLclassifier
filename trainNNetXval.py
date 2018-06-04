@@ -17,8 +17,8 @@ import numpy as np
 Train using given data file
 '''
 
-huList = [10,11,12,13,14,15]# Number of hidden units
-hlList = [3,4,5] # Number of hidden layers (minus 1)
+huList = [7,10,15,20,25]# Number of hidden units
+hlList = [4,5,6] # Number of hidden layers (minus 1)
 ol = 3 # Number of units in the output layer
 maxIt = 50000 # Number of iterations for learning
  # Stop criteria
