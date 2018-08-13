@@ -37,30 +37,41 @@ def crossVal(k,N):
     This function was developed in the Multiscale Cardiovascular Engineering
     Group (MUSE) at University College London by Carlos Ledezma.
     """
-    from random import sample
-    from numpy import ceil
+    from random import shuffle
+    from numpy import arange, ceil, delete, random
 
     # Initialize all indices
-    trainSet = list(range(N))
+    trainSet = arange(N,dtype=int)
+    shuffle(trainSet)
     
-    #Define the number of indices to be used for evaluation
-    evalNum = int(ceil(N*0.25))
-    evalSet = sample(trainSet,evalNum)
-    
+    evalSet = trainSet[:int(ceil(N*0.25))]
+    trainSet = trainSet[int(ceil(N*0.25)):]
+#    
+#    #Define the number of indices to be used for evaluation
+#    evalNum = int(ceil(N*0.25))
+#    evalSet = sample(trainSet,evalNum)
+#    
+#    trainSet = [i for i in range(N) if i not in evalSet]
+#    
     #Take the evaluation indeces away to generate the training indices
-    for i in range(evalNum):
-        del trainSet[trainSet.index(evalSet[i])]
+#    for i in range(evalNum):
+#        del trainSet[trainSet.index(evalSet[i])]
         
     xValTrainNum = int(ceil(len(trainSet)/k))
     xValSets = list([])
-    
+#    for i in range(k-1):
+#        xValS = sample(trainSet,xValTrainNum)
+#        for i in range(xValTrainNum):
+#            del trainSet[trainSet.index(xValS[i])]
+#            
+#        xValSets += [xValS]
     for i in range(k-1):
-        xValS = sample(trainSet,xValTrainNum)
-        for i in range(xValTrainNum):
-            del trainSet[trainSet.index(xValS[i])]
-            
-        xValSets += [xValS]
-    
+        train_set_len = len(trainSet)
+        xVal_set_idx = random.choice(train_set_len,size=xValTrainNum,replace=False)
+        xVal_set = trainSet[xVal_set_idx]
+        trainSet = delete(trainSet,xVal_set_idx)
+        xValSets += [xVal_set]
+        
     xValSets += [trainSet]
     
     return evalSet, xValSets
